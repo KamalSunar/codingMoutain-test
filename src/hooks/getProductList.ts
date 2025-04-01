@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllProducts } from "../api/product.api";
 import { PaginationProps, type ProductsResponse } from "../types/types";
 

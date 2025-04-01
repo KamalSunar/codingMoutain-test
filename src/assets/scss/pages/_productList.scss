@@ -16,4 +16,20 @@
 
     gap: 1rem;
   }
+
+  &-showMore {
+    padding-top: 1rem;
+  }
+
+  &-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
 }

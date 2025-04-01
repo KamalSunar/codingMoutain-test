@@ -63,3 +63,12 @@ p {
   line-height: 1.6;
   font-weight: 400;
 }
+
+.error {
+  width: 100%;
+  display: flex;
+  background-color: $error;
+
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
