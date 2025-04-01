@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProductById } from "../api/product.api";
 import { type Product } from "../types/types";
 
@@ -27,5 +27,5 @@ export const useProductDetailsById = (id: number) => {
     fetchProduct();
   }, [id]);
 
-  return { data: product, loading, error };
+  return { data: product as Product, loading, error };
 };

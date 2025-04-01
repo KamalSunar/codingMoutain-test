@@ -16,9 +16,9 @@ const App: React.FC = () => {
   return (
     <Suspense fallback="loading...">
       <Router>
-        <div className="container">
+        <div className="wrapper">
           {/* Left side: Product details (or placeholder) */}
-          <div className="container-right">
+          <div className="wrapper-right">
             <Routes>
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/product" element={<Home />} />
@@ -27,7 +27,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Right side: Product list */}
-          <div className="container-left">
+          <div className="wrapper-left">
             <ProductList />
           </div>
         </div>

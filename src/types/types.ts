@@ -9,7 +9,18 @@ export interface Product {
   brand: string;
   category: string;
   thumbnail: string;
+  minimumOrderQuantity: number;
+  reviews: Review[];
+  tags: string[];
   images: string[];
+}
+
+interface Review {
+  comment: string;
+  date: Date;
+  rating: number;
+  reviewerEmail: string;
+  reviewerName: string;
 }
 
 export interface ProductsResponse {
