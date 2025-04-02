@@ -1,5 +1,64 @@
 # React Shop Product Viewer
 
+This project is created using [dummyjson.com](https://dummyjson.com/products).
+
+Website URL: (https://react-shop-product-viewer.netlify.app)
+
+![React Shop Product Viewer](public/react-shop-product.png)
+
+**Prerequisites:**
+
+**List the prerequisites required to run the project, such as:**
+
+NodeJS: v20.12.2 (when developing)
+
+Package Manager: npm
+
+**Dependencies**
+
+React (v.18)
+
+Node (Package Manager)
+
+Typescript (latest)
+
+Sass
+
+If you are using npm
+
+### `npm install`
+
+If you are using Yarn
+
+### `yarn install or yarn`
+
+## Available Scripts
+
+**Start development server on port 3000.**
+If you are using npm
+
+### `npm start`
+
+If you are using Yarn
+
+### `yarn start`
+
+##
+
+**Build for production:**
+
+If you are using npm
+
+### `npm run build`
+
+If you are using Yarn
+
+### `yarn build`
+
+##
+
+<!-- # React Shop Product Viewer
+
 This project is a React application built with TypeScript that displays a list of products and detailed product information fetched from the live API at [dummyjson.com](https://dummyjson.com/products). The project demonstrates how to integrate a live API, implement routing, and use TypeScript for type safety.
 
 
@@ -56,4 +115,4 @@ The project uses live API endpoints from dummyjson.com:
   - ⁠Use the latest syntax for React 19. Avoid outdated patterns, such as those from React 13.
   - ⁠Keep the code clean, organized, and easy to read. Avoid unnecessary clutter or redundant code.
   - ⁠Ensure there are no issues when refreshing the page. Test how the code behaves in such scenarios and resolve any issues beforehand.
-  - ⁠Make sure that all features are correctly displayed and functional in the frontend. Avoid leaving gaps or missing components.
+  - ⁠Make sure that all features are correctly displayed and functional in the frontend. Avoid leaving gaps or missing components. -->
