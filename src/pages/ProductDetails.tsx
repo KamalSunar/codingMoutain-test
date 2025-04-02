@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { StarRating } from "../components/StarRating";
 import { useProductDetailsById } from "../hooks/getProductDetails";
 import { capitalizeFirstLetter } from "../utils";
+
+const tabOptions = [
+  {
+    label: "Additional information",
+    value: "info",
+  },
+  {
+    label: "Reviews",
+    value: "review",
+  },
+];
 
 const ProductDetails: React.FC = () => {
   const params = useParams();
   const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState("info");
   const [selectedImage, setSelectedImage] = useState("");
 
   const { data, loading, error } = useProductDetailsById(
@@ -25,11 +39,10 @@ const ProductDetails: React.FC = () => {
   const actualCostPrice =
     data?.price + data?.price * (data?.discountPercentage / 100) || 0; // cost price before discount
 
-  console.log("data", data, selectedImage);
-
   return (
     <div className="container productDetail-wrapper">
       <div className="productDetails">
+        {/* Product Image Section */}
         <div className="productDetails-img">
           <ul>
             {data?.images?.map((imgSrc) => (
@@ -45,16 +58,12 @@ const ProductDetails: React.FC = () => {
             <img src={selectedImage} alt="" loading="lazy" />
           </div>
         </div>
+
+        {/* Product Details Section */}
         <div className="productDetails-info">
           <h1>{data?.title}</h1>
           <div className="rating-wrapper">
-            <div className="rating">
-              <div className="star star-full" />
-              <div className="star star-full" />
-              <div className="star star-full" />
-              <div className="star star-full" />
-              <div className="star" />
-            </div>
+            <StarRating rating={data?.rating} />
             <span>({data?.reviews?.length} customers review)</span>
           </div>
           <h5 className="price">
@@ -81,7 +90,7 @@ const ProductDetails: React.FC = () => {
               {data?.tags
                 ?.map((item) => capitalizeFirstLetter(item))
                 ?.toString()
-                .replaceAll(",", ", ")}
+                ?.replaceAll(",", ", ")}
             </li>
             <li>
               <b>Minimum Order Quantity:</b> {data?.minimumOrderQuantity}
@@ -98,6 +107,58 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
       <div className="divider" />
+
+      {/* Product Review and Comment Section */}
+      <div className="productAdditionalInfo">
+        <ul className="tab">
+          {tabOptions.map((item) => (
+            <li
+              className={item.value === activeTab ? "active" : ""}
+              onClick={() => setActiveTab(item.value)}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
+
+        <div className="tab-content">
+          {activeTab === "review" && (
+            <div className="review-section">
+              {data?.reviews?.map((review) => (
+                <div className="review">
+                  <div className="review-header">
+                    <h6>
+                      {review?.reviewerName}
+                      <span>
+                        {new Date(review?.date)?.toLocaleDateString("sv-SE")}
+                      </span>
+                    </h6>
+                    <StarRating rating={review?.rating} />
+                  </div>
+                  <p className="review-description">{review?.comment}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "info" && (
+            <div className="additionalInfo">
+              <ul className="detail-list">
+                <li>
+                  <span> Weight </span> {data?.weight} kg
+                </li>
+                <li>
+                  <span>Dimension</span> {data?.dimensions?.height} x{" "}
+                  {data?.dimensions?.width} x {data?.dimensions?.depth} cm
+                </li>
+                <li>
+                  <span>Warranty Information</span> {data?.warrantyInformation}
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

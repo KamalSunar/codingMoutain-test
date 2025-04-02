@@ -2,24 +2,16 @@
   height: 100%;
   padding: 2rem;
   background-color: $grey;
-  overflow-y: auto;
 
-  max-height: 100vh;
-
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
+  max-height: 100%;
 
   h2 {
     margin-bottom: 1.5rem;
   }
 
   &-wrapper {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
 
     gap: 1rem;
   }
@@ -37,6 +29,37 @@
 
     button {
       width: 100%;
+    }
+  }
+
+  @media (min-width: 512px) {
+    &-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &-wrapper {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1366px) {
+    max-height: 100vh;
+
+    overflow-y: auto;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      gap: 1rem;
     }
   }
 }

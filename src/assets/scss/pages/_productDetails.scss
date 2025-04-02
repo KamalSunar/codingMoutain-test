@@ -2,49 +2,55 @@
   padding: 2rem 0;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 3rem;
 
   &-img {
     display: flex;
+    // flex-direction: column;
+    flex-direction: column-reverse;
     gap: 1rem;
 
-    ul li {
-      background-color: $light-grey;
-      width: 100px;
-      height: 150px;
-      margin-bottom: 1rem;
+    ul {
+      display: flex;
+      gap: 1rem;
 
-      padding: 1rem;
-      position: relative;
-
-      &::before {
-        position: absolute;
-        content: "";
-        top: 0;
-        left: 0;
-        height: 100%;
+      li {
+        background-color: $light-grey;
         width: 100%;
-        background-color: rgba($secondary, 0.7);
-      }
+        height: 150px;
 
-      &.active::before {
-        background-color: transparent;
-      }
+        padding: 1rem;
+        position: relative;
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        &::before {
+          position: absolute;
+          content: "";
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: rgba($secondary, 0.7);
+        }
+
+        &.active::before {
+          background-color: transparent;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
       }
     }
 
     .img-wrapper {
       width: 100%;
-      height: 650px;
+      height: 400px;
       background-color: $light-grey;
 
-      padding: 2rem;
+      padding: 1rem;
 
       img {
         width: 100%;
@@ -63,21 +69,6 @@
       align-items: center;
       justify-content: flex-start;
       margin: 0.4rem 0;
-
-      .rating {
-        display: flex;
-
-        .star {
-          width: 15px;
-          aspect-ratio: 1;
-          background: $light-grey;
-          clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
-
-          &-full {
-            background-color: $primary;
-          }
-        }
-      }
 
       span {
         color: $dark-grey;
@@ -140,8 +131,144 @@
       text-transform: uppercase;
     }
   }
+
+  @media (min-width: 512px) {
+    &-img {
+      flex-direction: row;
+
+      ul {
+        flex-direction: column;
+
+        li {
+          width: 100px;
+        }
+      }
+
+      .img-wrapper {
+        height: 650px;
+
+        padding: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 756px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .divider {
-  border: 1px solid rgba($light-grey, 0.3);
+  border-bottom: 1px solid rgba($light-grey, 0.5);
+}
+
+.productAdditionalInfo {
+  margin-top: 3rem;
+
+  .tab {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    li {
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: -5px;
+        left: 0;
+
+        height: 2px;
+        width: 0%;
+        background-color: $primary;
+        transition: width 200ms ease-in;
+      }
+
+      &.active::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .tab-content {
+    width: 100%;
+    margin: 0 auto;
+    // margin-bottom: 5rem;
+
+    .additionalInfo {
+      display: flex;
+      justify-content: center;
+
+      ul {
+        width: 100%;
+        li {
+          padding: 1rem;
+          width: 100%;
+          border-bottom: 1px solid rgba($light-grey, 0.5);
+
+          font-size: 0.9rem;
+
+          display: flex;
+          gap: 2rem;
+          color: $dark-grey;
+
+          span {
+            padding-left: 1rem;
+            color: $black;
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 512px) {
+    .tab {
+      flex-direction: row;
+
+      li {
+        width: auto;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .tab-content {
+      width: 70%;
+    }
+  }
+}
+
+.review {
+  border: 1px solid rgba($light-grey, 0.5);
+  padding: 2rem 1.5rem;
+
+  margin-bottom: 2rem;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.6rem;
+
+    h6 {
+      span {
+        color: $dark-grey;
+        padding-left: 0.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  &-description {
+    color: $dark-grey;
+  }
 }

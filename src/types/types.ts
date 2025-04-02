@@ -13,6 +13,13 @@ export interface Product {
   reviews: Review[];
   tags: string[];
   images: string[];
+  weight: number;
+  warrantyInformation: string;
+  dimensions: {
+    depth: number;
+    height: number;
+    width: number;
+  };
 }
 
 interface Review {

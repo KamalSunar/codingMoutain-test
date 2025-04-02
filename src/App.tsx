@@ -18,7 +18,7 @@ const App: React.FC = () => {
       <Router>
         <div className="wrapper">
           {/* Left side: Product details (or placeholder) */}
-          <div className="wrapper-right">
+          <div className="wrapper-left">
             <Routes>
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/product" element={<Home />} />
@@ -27,7 +27,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Right side: Product list */}
-          <div className="wrapper-left">
+          <div className="wrapper-right">
             <ProductList />
           </div>
         </div>

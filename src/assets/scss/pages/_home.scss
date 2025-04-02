@@ -5,13 +5,23 @@
   width: 100%;
   gap: 1rem;
 
-  &-left {
-    width: 430px;
-  }
+  flex-direction: column;
 
   &-right {
+    width: 100%;
+  }
+
+  &-left {
     flex: 1;
     overflow-y: "auto";
+  }
+
+  @media (min-width: 1366px) {
+    flex-direction: row;
+
+    &-right {
+      width: 430px;
+    }
   }
 }
 

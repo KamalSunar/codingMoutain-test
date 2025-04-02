@@ -17,7 +17,6 @@ export const useGetProductList = (pagination: PaginationProps) => {
       const errorMessage =
         err instanceof Error ? err.message : "An unknown error occurred";
       setError(errorMessage);
-      throw new Error(errorMessage);
     } finally {
       setLoading(false);
     }

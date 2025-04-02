@@ -1,0 +1,24 @@
+.rating {
+  display: flex;
+
+  .star {
+    width: 15px;
+    aspect-ratio: 1;
+    background: $light-grey;
+    clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
+
+    &-full {
+      background: $primary;
+    }
+
+    &-half {
+      background: linear-gradient(
+        to right,
+        $primary 0%,
+        $primary 50%,
+        $light-grey 50%,
+        $light-grey 100%
+      );
+    }
+  }
+}
