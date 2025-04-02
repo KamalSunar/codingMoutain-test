@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProductDetailsById } from "../hooks/getProductDetails";
+import { capitalizeFirstLetter } from "../utils";
 
 const ProductDetails: React.FC = () => {
   const params = useParams();
@@ -27,64 +28,76 @@ const ProductDetails: React.FC = () => {
   console.log("data", data, selectedImage);
 
   return (
-    <div className="container productDetails">
-      <div className="productDetails-img">
-        <ul>
-          {data?.images?.map((imgSrc) => (
-            <li
-              onClick={() => setSelectedImage(imgSrc)}
-              className={`${selectedImage === imgSrc ? "active" : ""}`}
-            >
-              <img src={imgSrc} alt="" width="100px" />
-            </li>
-          ))}
-        </ul>
-        <div className="img-wrapper">
-          <img src={selectedImage} alt="" loading="lazy" />
-        </div>
-      </div>
-      <div className="productDetails-info">
-        <h1>{data?.title}</h1>
-        <div className="rating-wrapper">
-          <div className="rating">
-            <div className="star star-full" />
-            <div className="star star-full" />
-            <div className="star star-full" />
-            <div className="star star-full" />
-            <div className="star" />
+    <div className="container productDetail-wrapper">
+      <div className="productDetails">
+        <div className="productDetails-img">
+          <ul>
+            {data?.images?.map((imgSrc) => (
+              <li
+                onClick={() => setSelectedImage(imgSrc)}
+                className={`${selectedImage === imgSrc ? "active" : ""}`}
+              >
+                <img src={imgSrc} alt="" width="100px" />
+              </li>
+            ))}
+          </ul>
+          <div className="img-wrapper">
+            <img src={selectedImage} alt="" loading="lazy" />
           </div>
-          <span>({data?.reviews?.length} customer reviews)</span>
         </div>
-        <span className="price">
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-          }).format(data?.price || 0)}
+        <div className="productDetails-info">
+          <h1>{data?.title}</h1>
+          <div className="rating-wrapper">
+            <div className="rating">
+              <div className="star star-full" />
+              <div className="star star-full" />
+              <div className="star star-full" />
+              <div className="star star-full" />
+              <div className="star" />
+            </div>
+            <span>({data?.reviews?.length} customers review)</span>
+          </div>
+          <h5 className="price">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(data?.price || 0)}
 
-          {data?.discountPercentage > 0 && (
-            <span>({actualCostPrice.toFixed(2)})</span>
-          )}
-        </span>
-        <p className="description">{data?.description}</p>
+            {data?.discountPercentage > 0 && (
+              <span>({actualCostPrice.toFixed(2)})</span>
+            )}
+          </h5>
+          <p className="description">{data?.description}</p>
 
-        <ul>
-          <li>
-            <b>Brand:</b> {data?.brand}
-          </li>
-          <li>
-            <b>Category:</b> {data?.category}
-          </li>
-          <li>
-            <b>Tags:</b> {data?.tags?.toString()}
-          </li>
-          <li>
-            <b>Minimum Order Quantity:</b> {data?.minimumOrderQuantity}
-          </li>
-          <li>
-            <b>Available Stock:</b> {data?.stock}
-          </li>
-        </ul>
+          <ul className="detail-list">
+            <li>
+              <b>Brand:</b> {data?.brand}
+            </li>
+            <li>
+              <b>Category:</b> {capitalizeFirstLetter(data?.category)}
+            </li>
+            <li>
+              <b>Tags:</b>{" "}
+              {data?.tags
+                ?.map((item) => capitalizeFirstLetter(item))
+                ?.toString()
+                .replaceAll(",", ", ")}
+            </li>
+            <li>
+              <b>Minimum Order Quantity:</b> {data?.minimumOrderQuantity}
+            </li>
+            <li>
+              <b>Available Stock:</b> {data?.stock}
+            </li>
+          </ul>
+
+          <form action="#" className="productDetails-form">
+            <input type="number" defaultValue={1} min={1} max={data?.stock} />
+            <button className="btn btn-primary">Add to Cart</button>
+          </form>
+        </div>
       </div>
+      <div className="divider" />
     </div>
   );
 };
