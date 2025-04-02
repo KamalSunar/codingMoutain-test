@@ -4,7 +4,7 @@ This project is created using [dummyjson.com](https://dummyjson.com/products).
 
 Website URL: (https://react-shop-product-viewer.netlify.app)
 
-![React Shop Product Viewer](public/react-shop-product.png)
+![React Shop Product Viewer](public/react-shop-product-preview.png)
 
 **Prerequisites:**
 
