@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
 import { useGetProductList } from "../hooks/getProductList";
 import { PaginationProps, Product } from "../types/types";
+import { ProductCardSkeleton } from "../components/ProductCardSkeleton";
 
 const ProductList: React.FC = () => {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ const ProductList: React.FC = () => {
       {!error && (
         <>
           <div className="productList-wrapper">
+            {loading &&
+              Array.from(Array(Math.floor(5)).keys())?.map((item) => (
+                <ProductCardSkeleton />
+              ))}
             {productList?.length > 0 &&
               productList?.map((product) => (
                 <ProductCard product={product} handleProduct={handleProduct} />
